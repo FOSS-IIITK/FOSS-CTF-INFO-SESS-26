@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ challenge.title }} · FOSS CTF{% endblock %}
+{% block content %}
+<div class="breadcrumb"><a href="{{ url_for('index') }}">Challenges</a><span>/</span><span>Challenge 0{{ challenge_id }}</span></div>
+<section class="challenge-layout">
+  <article class="challenge-detail">
+    <p class="eyebrow"><span>CHALLENGE 0{{ challenge_id }}</span> · {{ challenge.category|upper }}</p>
+    <h1>{{ challenge.title }}</h1>
+    <div class="challenge-meta"><span class="difficulty difficulty-{{ challenge.difficulty|lower }}">{{ challenge.difficulty }}</span><span>{{ challenge.points }} POINTS</span></div>
+    <div class="story-note">
+      <p class="eyebrow"><span>FIELD NOTES</span> · THE ACADEMY CHRONICLES</p>
+      <p>{{ challenge.story }}</p>
+    </div>
+    <div class="challenge-prompt">
+      <h2>YOUR TASK</h2>
+      <p>{{ challenge.description }}</p>
+      <div class="artifact">{{ challenge.artifact }}</div>
+    </div>
+    <details class="hint">
+      <summary>Need a nudge? <span>+</span></summary>
+      <p>{{ challenge.hint }}</p>
+    </details>
+  </article>
+  <aside class="submit-panel">
+    <p class="eyebrow"><span>YOUR TURN</span></p>
+    <h2>Submit a flag.</h2>
+    <p class="form-intro">Use the same phone number on every challenge so your points stay together.</p>
+    <form method="post" action="{{ url_for('submit_answer', challenge_id=challenge_id) }}">
+      <label for="name">NAME</label>
+      <input id="name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Your name" required>
+      <label for="phone">PHONE NUMBER</label>
+      <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" required>
+      <label for="answer">FLAG</label>
+      <input id="answer" name="answer" type="text" autocapitalize="off" spellcheck="false" placeholder="FOSS{...}" required>
+      <button class="button button-primary submit-button" type="submit">Submit flag <span>↗</span></button>
+      <p class="privacy-note">Your phone number is only used to match your score and is never shown on the leaderboard.</p>
+    </form>
+  </aside>
+</section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}FOSS CTF · IIIT Kalyani{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow"><span>01</span> OPEN SOURCE. OPEN MINDS.</p>
+    <h1>Break things.<br><span>Learn how.</span></h1>
+    <p class="hero-description">Beyond the lantern-lit halls, old secrets are waking. Follow the clues, recover the lost flags, and earn your place on the academy's board.</p>
+    <a class="button button-primary" href="#challenges">Explore challenges <span>↘</span></a>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
+    <div class="orbit orbit-three"></div>
+    <div class="hero-terminal">
+      <div class="terminal-head"><span></span><span></span><span></span><small>foss@iiitk:~</small></div>
+      <div class="terminal-body">
+        <p><b>$</b> ./start_ctf.sh</p>
+        <p class="terminal-muted">loading challenges...</p>
+        <p class="terminal-green">{{ challenges|length }} challenges ready<span class="cursor"></span></p>
+        <p class="terminal-muted">the academy awaits.</p>
+      </div>
+    </div>
+    <span class="art-label label-top">FIG. 01 — THE PLAYGROUND</span>
+    <span class="art-label label-bottom">FIND THE SIGNAL <b>↗</b></span>
+  </div>
+</section>
+
+<section class="section-heading" id="challenges">
+  <div>
+    <p class="eyebrow"><span>02</span> THE PLAYGROUND</p>
+    <h2>Pick your first lock.</h2>
+  </div>
+  <p class="section-note">{{ challenge_count }} challenges. One leaderboard.<br>Submit a flag to claim your points.</p>
+</section>
+<section class="challenge-grid">
+  {% for challenge_id, item in challenges.items() %}
+    <article class="challenge-card">
+      <div class="card-topline"><span>CHALLENGE 0{{ challenge_id }}</span><span class="difficulty difficulty-{{ item.difficulty|lower }}">{{ item.difficulty }}</span></div>
+      <div class="card-icon">{% if challenge_id == 1 %}↻{% elif challenge_id == 2 %}0x{% else %}✧{% endif %}</div>
+      <p class="card-category">{{ item.category }}</p>
+      <h3>{{ item.title }}</h3>
+      <p class="card-description">{{ item.description }}</p>
+      <div class="card-footer">
+        <span>{{ item.points }} <small>PTS</small></span>
+        <a href="{{ url_for('challenge', challenge_id=challenge_id) }}" aria-label="Open {{ item.title }}">Open challenge <b>↗</b></a>
+      </div>
+    </article>
+  {% endfor %}
+</section>
+<section class="cta-strip">
+  <div><p class="eyebrow"><span>03</span> FRIENDLY COMPETITION</p><h2>Who's on top?</h2></div>
+  <a class="button button-outline" href="{{ url_for('leaderboard') }}">View leaderboard <span>↗</span></a>
+</section>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Something went wrong · FOSS CTF{% endblock %}
+{% block content %}
+<section class="error-page"><p class="eyebrow"><span>500</span> · SERVER ERROR</p><h1>We hit a snag.</h1><p>Please try again in a moment.</p><a class="button button-primary" href="{{ url_for('index') }}">Back home ↗</a></section>
+{% endblock %}

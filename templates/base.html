@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07120d">
+  <title>{% block title %}FOSS CTF · IIIT Kalyani{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="FOSS CTF home">
+        <img class="brand-logo" src="{{ url_for('static', filename='foss_logo.png') }}" alt="FOSS Club, IIIT Kalyani">
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="{{ url_for('index') }}">Challenges</a>
+        <a href="{{ url_for('leaderboard') }}">Leaderboard</a>
+      </nav>
+      <span class="event-tag"><i></i> EVENT LIVE</span>
+    </header>
+
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flash-stack" aria-live="polite">
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <span>MADE FOR THE CURIOUS.</span>
+      <span>FOSS CLUB · IIIT KALYANI</span>
+    </footer>
+  </div>
+</body>
+</html>

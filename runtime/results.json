@@ -1,0 +1,24 @@
+{
+  "918340708543": {
+    "name": "wf",
+    "phone": "918340708543",
+    "solves": {
+      "1": {
+        "title": "The Owl Post Cipher",
+        "points": 100,
+        "solved_at": "2026-10-25T17:32:11.912486+00:00"
+      },
+      "2": {
+        "title": "Wand-Key Dispatch",
+        "points": 200,
+        "solved_at": "2026-10-25T17:34:18.529986+00:00"
+      },
+      "3": {
+        "title": "The Three Wards",
+        "points": 350,
+        "solved_at": "2026-10-25T17:34:48.152127+00:00"
+      }
+    },
+    "last_solve": "2026-10-25T17:34:48.152127+00:00"
+  }
+}

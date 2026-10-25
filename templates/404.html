@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Not found · FOSS CTF{% endblock %}
+{% block content %}
+<section class="error-page"><p class="eyebrow"><span>404</span> · WRONG TURN</p><h1>That challenge<br><span>doesn't exist.</span></h1><a class="button button-primary" href="{{ url_for('index') }}">Back to challenges ↗</a></section>
+{% endblock %}

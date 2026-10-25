@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard · FOSS CTF{% endblock %}
+{% block content %}
+<section class="leaderboard-header">
+  <p class="eyebrow"><span>LIVE EVENT</span> · FOSS CLUB IIIT KALYANI</p>
+  <h1>The leaderboard<span>.</span></h1>
+  <p>Every solve counts. Keep exploring, keep climbing.</p>
+</section>
+<section class="leaderboard-wrap">
+  <div class="board-title"><div><span class="live-dot"></span> CURRENT STANDINGS</div><span>{{ standings|length }} PLAYER{% if standings|length != 1 %}S{% endif %}</span></div>
+  {% if standings %}
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>RANK</th><th>PLAYER</th><th>SOLVES</th><th>LAST SOLVE</th><th>SCORE</th></tr></thead>
+        <tbody>
+          {% for player in standings %}
+            <tr>
+              <td class="rank-cell">{% if loop.index == 1 %}<span class="rank-first">01</span>{% else %}{{ "%02d"|format(loop.index) }}{% endif %}</td>
+              <td class="player-cell">{{ player.name }}</td>
+              <td>{{ player.solved_count }} / {{ challenge_count }}</td>
+              <td class="time-cell">{% if player.last_solve %}{{ player.last_solve[:16].replace("T", " ") }} UTC{% else %}—{% endif %}</td>
+              <td class="score-cell">{{ player.score }} <small>PTS</small></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="empty-board"><span>✳</span><h2>No solves yet.</h2><p>Be the first to find a flag and claim the top spot.</p><a href="{{ url_for('index') }}">Browse challenges ↗</a></div>
+  {% endif %}
+</section>
+<div class="board-footnote"><span>SCORING: CHALLENGE POINTS ARE AWARDED ONCE PER PLAYER.</span><a href="{{ url_for('index') }}">← BACK TO CHALLENGES</a></div>
+{% endblock %}
